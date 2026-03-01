@@ -33,7 +33,7 @@
   <!-- PI Section (하드코딩) -->
   <section class="pi-section reveal">
     <div class="pi-photo">
-      <img src="https://drive.google.com/uc?export=view&id=1SMLYLIdLr4ig-cpxWOU5Pj9foj8-lug4" alt="Jae Young Lee">
+      <img src="https://lh3.googleusercontent.com/d/1SMLYLIdLr4ig-cpxWOU5Pj9foj8-lug4" alt="Jae Young Lee">
     </div>
     <div class="pi-info">
       <div class="pi-role">Principal Investigator</div>
@@ -148,7 +148,7 @@
       for (var i = 0; i < members.length; i++) {
         var m = members[i];
         html += '<div class="member-card" style="position:relative;">' +
-          '<div class="member-photo"><img src="' + m.imageUrl + '" alt="' + escapeHtml(m.name) + '"></div>' +
+          '<div class="member-photo"><img src="' + convertDriveUrl(m.imageUrl) + '" alt="' + escapeHtml(m.name) + '"></div>' +
           '<h4>' + escapeHtml(m.name) + '</h4>' +
           '<span>' + escapeHtml(m.role) + '</span>' +
           '<div class="member-actions" style="position:absolute; top:0.5rem; right:0.5rem; display:none; gap:0.3rem;">' +

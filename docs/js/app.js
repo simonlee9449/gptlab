@@ -141,3 +141,15 @@ function escapeHtml(text) {
   div.textContent = text;
   return div.innerHTML;
 }
+
+// Google Drive URL을 lh3 형식으로 변환 (더 안정적인 이미지 로딩)
+function convertDriveUrl(url) {
+  if (!url) return '';
+  // https://drive.google.com/uc?export=view&id=FILE_ID 형식에서 ID 추출
+  const match = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+  if (match) {
+    return 'https://lh3.googleusercontent.com/d/' + match[1];
+  }
+  // 이미 lh3 형식이거나 다른 URL이면 그대로 반환
+  return url;
+}
