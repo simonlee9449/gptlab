@@ -1,6 +1,6 @@
 // GPT Lab - App JavaScript
 const SHEET_ID = '1hV8bLhwTI2cBq0Is_mqn_Mt5fPxtGQ3CZ4_naFk3JiY';
-const APPS_SCRIPT_URL = 'YOUR_APPS_SCRIPT_URL_HERE'; // 배포 후 업데이트 필요
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzxFrCJirfgpEmAf0EmfxBsxZEoPdyvjZ806sJkxD-OuSaypmSvXvuKoLafSukbDEF4IA/exec';
 const PASSWORD = '3820';
 
 // Google Sheets에서 데이터 가져오기
