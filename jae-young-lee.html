@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GPT Lab — Jae Young Lee</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Noto+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #FAFAFA; --white: #FFFFFF; --fg: #1A1A1A; --fg-sub: #555555;
+      --fg-light: #999999; --accent: #1B6B54; --accent-light: #E8F4EF;
+      --border: #E8E8E8;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'Noto Sans', -apple-system, sans-serif;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:var(--sans); background:var(--bg); color:var(--fg); -webkit-font-smoothing:antialiased; }
+
+    /* Nav */
+    nav { position:fixed; top:0; width:100%; z-index:1000; background:rgba(250,250,250,0.92); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-bottom:1px solid var(--border); }
+    .nav-inner { max-width:1100px; margin:0 auto; padding:0 2rem; height:64px; display:flex; align-items:center; justify-content:space-between; }
+    .nav-logo { display:flex; align-items:center; gap:0.5rem; text-decoration:none; }
+    .nav-logo-mark { width:32px; height:32px; background:var(--accent); border-radius:8px; display:flex; align-items:center; justify-content:center; }
+    .nav-logo-mark svg { width:18px; height:18px; }
+    .nav-logo-text { font-family:var(--serif); font-size:1.2rem; font-weight:700; color:var(--fg); }
+    .nav-links { display:flex; align-items:center; gap:2rem; list-style:none; }
+    .nav-links a { font-size:0.85rem; font-weight:500; color:var(--fg-sub); text-decoration:none; transition:color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color:var(--accent); }
+
+    /* Page header */
+    .profile-header {
+      max-width:740px; margin:0 auto;
+      padding:7rem 2rem 3rem;
+    }
+    .back-link {
+      font-size:0.8rem; font-weight:500; color:var(--fg-light);
+      text-decoration:none; transition:color 0.2s; display:inline-flex; align-items:center; gap:0.3rem;
+    }
+    .back-link:hover { color:var(--accent); }
+    .profile-header h1 {
+      font-family:var(--serif); font-size:2.2rem; font-weight:700;
+      color:var(--fg); margin-top:1.5rem; margin-bottom:0.3rem;
+    }
+    .profile-header .subtitle {
+      font-size:0.9rem; font-weight:300; color:var(--fg-sub);
+    }
+
+    /* Timeline section */
+    .timeline-section {
+      max-width:740px; margin:0 auto;
+      padding:2rem 2rem 1rem;
+    }
+    .timeline-label {
+      font-size:0.78rem; font-weight:600; letter-spacing:0.12em;
+      text-transform:uppercase; color:var(--accent); margin-bottom:1.5rem;
+    }
+    .timeline {
+      position:relative;
+      padding-left:1.8rem;
+      border-left:2px solid var(--border);
+    }
+    .timeline-item {
+      position:relative;
+      padding-bottom:2rem;
+    }
+    .timeline-item:last-child { padding-bottom:0; }
+    .timeline-item::before {
+      content:'';
+      position:absolute; left:-1.95rem; top:0.35rem;
+      width:10px; height:10px;
+      border-radius:50%;
+      background:var(--white);
+      border:2px solid var(--accent);
+    }
+    .timeline-item.current::before {
+      background:var(--accent);
+    }
+    .t-period {
+      font-size:0.78rem; font-weight:500; color:var(--fg-light);
+      margin-bottom:0.25rem;
+    }
+    .t-title {
+      font-size:0.95rem; font-weight:600; color:var(--fg);
+      margin-bottom:0.15rem;
+    }
+    .t-org {
+      font-size:0.85rem; font-weight:300; color:var(--fg-sub); line-height:1.6;
+    }
+    .t-note {
+      font-size:0.8rem; font-weight:400; color:var(--accent);
+      margin-top:0.2rem;
+    }
+
+    /* Spacer */
+    .spacer { height:4rem; }
+
+    /* Footer */
+    footer { border-top:1px solid var(--border); background:var(--white); padding:2.5rem 2rem; margin-top:3rem; }
+    .footer-inner { max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
+    .footer-info p { font-size:0.8rem; color:var(--fg-light); font-weight:300; line-height:1.7; }
+    .footer-logos { display:flex; gap:0.6rem; }
+    .footer-badge { font-size:0.7rem; font-weight:600; color:var(--fg-sub); background:var(--bg); padding:0.35rem 0.75rem; border-radius:6px; }
+
+    @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+    .reveal { opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    @media(max-width:600px){
+      .profile-header h1 { font-size:1.6rem; }
+      .nav-links { gap:1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3C10.5 7 7 8.5 3 9c4 1.5 6.5 4 7 8 .5-4 3.5-6 8-7-4.5-1.5-6-4.5-6-7z" fill="white"/></svg></div>
+        <span class="nav-logo-text">GPT Lab</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="people.html" class="active">People</a></li>
+        <li><a href="publications.html">Publications</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="profile-header">
+    <a href="people.html" class="back-link">← People</a>
+    <h1>Jae Young Lee</h1>
+    <p class="subtitle">Principal Investigator · Assistant Professor</p>
+  </div>
+
+  <!-- ━━ Education ━━ -->
+  <section class="timeline-section reveal">
+    <div class="timeline-label">Education</div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="t-period">2011 – 2016</div>
+        <div class="t-title">PhD</div>
+        <div class="t-org">Monash University, Department of Medicine, Melbourne, Australia</div>
+        <div class="t-note">Dean's Award for Thesis Excellence</div>
+      </div>
+      <div class="timeline-item">
+        <div class="t-period">2007 – 2010</div>
+        <div class="t-title">B. Eng with Honours</div>
+        <div class="t-org">University of Melbourne, Melbourne, Australia</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ━━ Professional Experience ━━ -->
+  <section class="timeline-section reveal">
+    <div class="timeline-label">Professional Experience</div>
+    <div class="timeline">
+      <div class="timeline-item current">
+        <div class="t-period">September 2025 – Present</div>
+        <div class="t-title">Assistant Professor</div>
+        <div class="t-org">Sungkyunkwan University, SAIHST<br>Samsung Medical Center, Cell and Gene Therapy Institute</div>
+      </div>
+      <div class="timeline-item">
+        <div class="t-period">2025 – August 2025</div>
+        <div class="t-title">Assistant Professor</div>
+        <div class="t-org">Ajou University College of Medicine, Department of Anatomy</div>
+      </div>
+      <div class="timeline-item">
+        <div class="t-period">2016 – 2025</div>
+        <div class="t-title">Managing Director, Head of Strategy &amp; Business Development</div>
+        <div class="t-org">ToolGen Inc.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="t-period">2015 – 2016</div>
+        <div class="t-title">Research Assistant</div>
+        <div class="t-org">Monash University, Melbourne, Australia</div>
+      </div>
+      <div class="timeline-item">
+        <div class="t-period">2013 – 2014</div>
+        <div class="t-title">Teaching Associate</div>
+        <div class="t-org">Monash University, Melbourne, Australia</div>
+      </div>
+      <div class="timeline-item">
+        <div class="t-period">2011</div>
+        <div class="t-title">Research Scientist</div>
+        <div class="t-org">Samsung Advanced Institute of Technology</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="spacer"></div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-info">
+        <p>Sungkyunkwan University, SAIHST &amp; Samsung Medical Center<br>81, Irwon-ro, Gangnam-gu, Seoul</p>
+      </div>
+      <div class="footer-logos">
+        <span class="footer-badge">SKKU</span>
+        <span class="footer-badge">SAIHST</span>
+        <span class="footer-badge">SMC</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), {threshold:0.12});
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>

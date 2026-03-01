@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GPT Lab — People</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Noto+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #FAFAFA;
+      --white: #FFFFFF;
+      --fg: #1A1A1A;
+      --fg-sub: #555555;
+      --fg-light: #999999;
+      --accent: #1B6B54;
+      --accent-light: #E8F4EF;
+      --accent-dark: #0F4D3A;
+      --border: #E8E8E8;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'Noto Sans', -apple-system, sans-serif;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:var(--sans); background:var(--bg); color:var(--fg); -webkit-font-smoothing:antialiased; }
+
+    /* ── Nav (shared) ── */
+    nav { position:fixed; top:0; width:100%; z-index:1000; background:rgba(250,250,250,0.92); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-bottom:1px solid var(--border); }
+    .nav-inner { max-width:1100px; margin:0 auto; padding:0 2rem; height:64px; display:flex; align-items:center; justify-content:space-between; }
+    .nav-logo { display:flex; align-items:center; gap:0.5rem; text-decoration:none; }
+    .nav-logo-mark { width:32px; height:32px; background:var(--accent); border-radius:8px; display:flex; align-items:center; justify-content:center; }
+    .nav-logo-mark svg { width:18px; height:18px; }
+    .nav-logo-text { font-family:var(--serif); font-size:1.2rem; font-weight:700; color:var(--fg); }
+    .nav-links { display:flex; align-items:center; gap:2rem; list-style:none; }
+    .nav-links a { font-size:0.85rem; font-weight:500; color:var(--fg-sub); text-decoration:none; transition:color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color:var(--accent); }
+
+    /* ── Page header ── */
+    .page-hero {
+      max-width:1100px; margin:0 auto;
+      padding:8rem 2rem 4rem;
+      text-align:center;
+    }
+    .page-hero .label {
+      font-size:0.78rem; font-weight:600; letter-spacing:0.12em;
+      text-transform:uppercase; color:var(--accent); margin-bottom:1.5rem;
+    }
+    .page-hero h1 {
+      font-family:var(--serif); font-style:italic;
+      font-size:clamp(1.5rem,3.5vw,2.2rem); font-weight:500;
+      line-height:1.4; color:var(--fg); max-width:650px; margin:0 auto;
+    }
+
+    /* ── PI Section ── */
+    .pi-section {
+      max-width:1100px; margin:0 auto;
+      padding:3rem 2rem 4rem;
+      display:grid; grid-template-columns:320px 1fr; gap:3rem;
+      align-items:start;
+    }
+    .pi-photo {
+      width:100%; aspect-ratio:3/4;
+      background:var(--border);
+      border-radius:14px;
+      display:flex; align-items:center; justify-content:center;
+      overflow:hidden;
+    }
+    .pi-photo img { width:100%; height:100%; object-fit:cover; }
+    .photo-placeholder {
+      font-size:0.75rem; color:var(--fg-light); text-align:center; line-height:1.5;
+    }
+    .pi-info { padding-top:0.5rem; }
+    .pi-info .pi-role {
+      font-size:0.78rem; font-weight:600; letter-spacing:0.1em;
+      text-transform:uppercase; color:var(--accent); margin-bottom:0.5rem;
+    }
+    .pi-info h2 {
+      font-family:var(--serif); font-size:1.8rem; font-weight:700;
+      color:var(--fg); margin-bottom:1rem;
+    }
+    .pi-info p {
+      font-size:0.95rem; font-weight:300; color:var(--fg-sub); line-height:1.8;
+    }
+    .pi-link {
+      display:inline-block; margin-top:1.5rem;
+      font-size:0.85rem; font-weight:500; color:var(--accent);
+      text-decoration:none; border-bottom:1px solid var(--accent);
+      padding-bottom:2px; transition:opacity 0.2s;
+    }
+    .pi-link:hover { opacity:0.7; }
+
+    /* ── Members ── */
+    .members {
+      max-width:1100px; margin:0 auto;
+      padding:3rem 2rem;
+    }
+    .members-header {
+      margin-bottom:1rem;
+    }
+    .members-header .label {
+      font-size:0.78rem; font-weight:600; letter-spacing:0.12em;
+      text-transform:uppercase; color:var(--accent); margin-bottom:0.5rem;
+    }
+    .members-header p {
+      font-size:0.95rem; font-weight:300; color:var(--fg-sub); line-height:1.7; max-width:600px;
+    }
+    .members-grid {
+      display:grid; grid-template-columns:repeat(4,1fr);
+      gap:1.5rem; margin-top:2rem;
+    }
+    .member-card {
+      text-align:center;
+    }
+    .member-photo {
+      width:100%; aspect-ratio:1;
+      background:var(--border);
+      border-radius:12px;
+      margin-bottom:0.8rem;
+      display:flex; align-items:center; justify-content:center;
+      overflow:hidden;
+    }
+    .member-photo img { width:100%; height:100%; object-fit:cover; }
+    .member-card h4 {
+      font-size:0.92rem; font-weight:600; color:var(--fg); margin-bottom:0.2rem;
+    }
+    .member-card span {
+      font-size:0.78rem; font-weight:300; color:var(--fg-sub);
+    }
+
+    /* ── Recruit CTA ── */
+    .recruit {
+      max-width:1100px; margin:3rem auto 0;
+      padding:0 2rem 5rem;
+    }
+    .recruit-box {
+      background:var(--accent); border-radius:16px;
+      padding:3rem; text-align:center;
+      position:relative; overflow:hidden;
+    }
+    .recruit-box::before {
+      content:''; position:absolute; top:-40%; right:-15%;
+      width:300px; height:300px; border-radius:50%;
+      background:rgba(255,255,255,0.06);
+    }
+    .recruit-box h3 {
+      font-family:var(--serif); font-size:1.4rem; font-weight:700;
+      color:white; margin-bottom:0.6rem; position:relative; z-index:1;
+    }
+    .recruit-box a {
+      display:inline-block; margin-top:1rem;
+      font-size:0.9rem; font-weight:500; color:white;
+      text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.5);
+      padding-bottom:2px; position:relative; z-index:1;
+      transition:border-color 0.2s;
+    }
+    .recruit-box a:hover { border-color:white; }
+
+    /* ── Footer ── */
+    footer { border-top:1px solid var(--border); background:var(--white); padding:2.5rem 2rem; }
+    .footer-inner { max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
+    .footer-info p { font-size:0.8rem; color:var(--fg-light); font-weight:300; line-height:1.7; }
+    .footer-logos { display:flex; gap:0.6rem; }
+    .footer-badge { font-size:0.7rem; font-weight:600; color:var(--fg-sub); background:var(--bg); padding:0.35rem 0.75rem; border-radius:6px; }
+
+    /* ── Animations ── */
+    @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+    .reveal { opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    @media(max-width:800px){
+      .pi-section { grid-template-columns:1fr; }
+      .pi-photo { max-width:280px; margin:0 auto; }
+      .members-grid { grid-template-columns:repeat(2,1fr); }
+    }
+    @media(max-width:500px){
+      .members-grid { grid-template-columns:1fr 1fr; gap:1rem; }
+      .nav-links { gap:1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-mark"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3C10.5 7 7 8.5 3 9c4 1.5 6.5 4 7 8 .5-4 3.5-6 8-7-4.5-1.5-6-4.5-6-7z" fill="white"/></svg></div>
+        <span class="nav-logo-text">GPT Lab</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="people.html" class="active">People</a></li>
+        <li><a href="publications.html">Publications</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ━━ Header ━━ -->
+  <section class="page-hero">
+    <div class="label">People</div>
+    <h1>"Bold ideas and collective creativity can redefine the future of medicine."</h1>
+  </section>
+
+  <!-- ━━ PI ━━ -->
+  <section class="pi-section reveal">
+    <div class="pi-photo">
+      <!-- Replace src with actual photo -->
+      <span class="photo-placeholder">PI Photo<br>(replace with image)</span>
+    </div>
+    <div class="pi-info">
+      <div class="pi-role">Principal Investigator</div>
+      <h2>Jae Young Lee</h2>
+      <p>As an industry experienced scientist, Jae Young has a vision to bridge fundamental genomics with translational medicine. He leads a multidisciplinary team developing next-generation therapies.</p>
+      <a href="jae-young-lee.html" class="pi-link">View Full Profile →</a>
+    </div>
+  </section>
+
+  <!-- ━━ Lab Members ━━ -->
+  <section class="members reveal">
+    <div class="members-header">
+      <div class="label">Lab Members</div>
+      <p>GPT Lab emphasizes creativity, collaboration, and clinical impact, inspiring the team to turn scientific discoveries into transformative treatments.</p>
+    </div>
+    <div class="members-grid">
+      <div class="member-card">
+        <div class="member-photo"><span class="photo-placeholder">Photo</span></div>
+        <h4>Hyerin Jung</h4>
+        <span>Post-doctoral Fellow</span>
+      </div>
+      <div class="member-card">
+        <div class="member-photo"><span class="photo-placeholder">Photo</span></div>
+        <h4>Hyunjung Park</h4>
+        <span>Research Professor</span>
+      </div>
+      <div class="member-card">
+        <div class="member-photo"><span class="photo-placeholder">Photo</span></div>
+        <h4>Yunjung Lee</h4>
+        <span>Research Associate</span>
+      </div>
+      <div class="member-card">
+        <div class="member-photo"><span class="photo-placeholder">Photo</span></div>
+        <h4>Seokju Kim</h4>
+        <span>Masters Student</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ━━ Recruiting ━━ -->
+  <section class="recruit reveal">
+    <div class="recruit-box">
+      <h3>Seeking talented students / post-docs</h3>
+      <a href="mailto:jyjlee0930@skku.edu">jyjlee0930@skku.edu</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-info">
+        <p>Sungkyunkwan University, SAIHST &amp; Samsung Medical Center<br>81, Irwon-ro, Gangnam-gu, Seoul</p>
+      </div>
+      <div class="footer-logos">
+        <span class="footer-badge">SKKU</span>
+        <span class="footer-badge">SAIHST</span>
+        <span class="footer-badge">SMC</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), {threshold:0.12});
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>
