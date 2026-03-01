@@ -29,8 +29,8 @@ function parseSheetData(data, sheetName) {
   const cols = data.table.cols;
   const result = [];
 
-  // 헤더 건너뛰기 (첫 번째 행)
-  for (let i = 1; i < rows.length; i++) {
+  // rows는 데이터만 포함 (헤더는 cols에 있음)
+  for (let i = 0; i < rows.length; i++) {
     const row = rows[i];
     if (!row.c || !row.c[0]) continue;
 
