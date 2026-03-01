@@ -52,6 +52,14 @@ function parseSheetData(data, sheetName) {
         imageUrl: row.c[3] ? row.c[3].v : '',
         date: row.c[4] ? formatDate(row.c[4].v) : ''
       });
+    } else if (sheetName === 'Members') {
+      result.push({
+        id: row.c[0] ? row.c[0].v : '',
+        name: row.c[1] ? row.c[1].v : '',
+        role: row.c[2] ? row.c[2].v : '',
+        imageUrl: row.c[3] ? row.c[3].v : '',
+        order: row.c[4] ? row.c[4].v : 0
+      });
     }
   }
 

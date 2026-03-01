@@ -17,6 +17,7 @@ function doPost(e) {
 
     var result;
     switch (action) {
+      // Publications
       case 'addPublication':
         result = addPublication(payload);
         break;
@@ -26,6 +27,7 @@ function doPost(e) {
       case 'deletePublication':
         result = deletePublication(payload.id);
         break;
+      // News
       case 'addNews':
         result = addNews(payload);
         break;
@@ -34,6 +36,16 @@ function doPost(e) {
         break;
       case 'deleteNews':
         result = deleteNews(payload.id);
+        break;
+      // Members
+      case 'addMember':
+        result = addMember(payload);
+        break;
+      case 'updateMember':
+        result = updateMember(payload);
+        break;
+      case 'deleteMember':
+        result = deleteMember(payload.id);
         break;
       default:
         result = { success: false, message: 'Unknown action' };
@@ -202,4 +214,77 @@ function deleteNews(id) {
   }
 
   return { success: false, message: 'News not found' };
+}
+
+// ========== Members ==========
+
+function addMember(data) {
+  var ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+  var sheet = ss.getSheetByName('Members');
+
+  if (!sheet) {
+    sheet = ss.insertSheet('Members');
+    sheet.appendRow(['id', 'name', 'role', 'imageUrl', 'order']);
+  }
+
+  var allData = sheet.getDataRange().getValues();
+  var maxId = 0;
+  for (var i = 1; i < allData.length; i++) {
+    if (allData[i][0] > maxId) maxId = allData[i][0];
+  }
+  var newId = maxId + 1;
+
+  sheet.appendRow([
+    newId,
+    data.name,
+    data.role,
+    data.imageUrl || '',
+    data.order || 0
+  ]);
+
+  return { success: true, id: newId };
+}
+
+function updateMember(data) {
+  var ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+  var sheet = ss.getSheetByName('Members');
+
+  if (!sheet) {
+    return { success: false, message: 'Sheet not found' };
+  }
+
+  var allData = sheet.getDataRange().getValues();
+
+  for (var i = 1; i < allData.length; i++) {
+    if (allData[i][0] == data.id) {
+      var rowNum = i + 1;
+      sheet.getRange(rowNum, 2).setValue(data.name);
+      sheet.getRange(rowNum, 3).setValue(data.role);
+      sheet.getRange(rowNum, 4).setValue(data.imageUrl || '');
+      sheet.getRange(rowNum, 5).setValue(data.order || 0);
+      return { success: true };
+    }
+  }
+
+  return { success: false, message: 'Member not found' };
+}
+
+function deleteMember(id) {
+  var ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+  var sheet = ss.getSheetByName('Members');
+
+  if (!sheet) {
+    return { success: false, message: 'Sheet not found' };
+  }
+
+  var allData = sheet.getDataRange().getValues();
+
+  for (var i = 1; i < allData.length; i++) {
+    if (allData[i][0] == id) {
+      sheet.deleteRow(i + 1);
+      return { success: true };
+    }
+  }
+
+  return { success: false, message: 'Member not found' };
 }
