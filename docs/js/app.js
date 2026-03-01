@@ -32,30 +32,42 @@ function parseSheetData(data, sheetName) {
   // rows는 데이터만 포함 (헤더는 cols에 있음)
   for (let i = 0; i < rows.length; i++) {
     const row = rows[i];
-    if (!row.c || !row.c[0]) continue;
+    if (!row.c) continue;
 
     if (sheetName === 'Publications') {
+      const id = row.c[0] ? row.c[0].v : '';
+      const title = row.c[3] ? row.c[3].v : '';
+      // id와 title이 없으면 빈 행으로 간주
+      if (!id && !title) continue;
       result.push({
-        id: row.c[0] ? row.c[0].v : '',
+        id: id,
         year: row.c[1] ? row.c[1].v : '',
         authors: row.c[2] ? row.c[2].v : '',
-        title: row.c[3] ? row.c[3].v : '',
+        title: title,
         journal: row.c[4] ? row.c[4].v : '',
         details: row.c[5] ? row.c[5].v : '',
         link: row.c[6] ? row.c[6].v : ''
       });
     } else if (sheetName === 'News') {
+      const id = row.c[0] ? row.c[0].v : '';
+      const title = row.c[1] ? row.c[1].v : '';
+      // id와 title이 없거나 빈 문자열이면 빈 행으로 간주
+      if (!id && (!title || title.toString().trim() === '')) continue;
       result.push({
-        id: row.c[0] ? row.c[0].v : '',
-        title: row.c[1] ? row.c[1].v : '',
+        id: id,
+        title: title,
         description: row.c[2] ? row.c[2].v : '',
         imageUrl: row.c[3] ? row.c[3].v : '',
         date: row.c[4] ? formatDate(row.c[4].v) : ''
       });
     } else if (sheetName === 'Members') {
+      const id = row.c[0] ? row.c[0].v : '';
+      const name = row.c[1] ? row.c[1].v : '';
+      // id와 name이 없으면 빈 행으로 간주
+      if (!id && (!name || name.toString().trim() === '')) continue;
       result.push({
-        id: row.c[0] ? row.c[0].v : '',
-        name: row.c[1] ? row.c[1].v : '',
+        id: id,
+        name: name,
         role: row.c[2] ? row.c[2].v : '',
         imageUrl: row.c[3] ? row.c[3].v : '',
         order: row.c[4] ? row.c[4].v : 0
