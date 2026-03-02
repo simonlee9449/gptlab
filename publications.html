@@ -3,92 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GPT Lab — Publications</title>
+  <title>GPT Lab - Publications</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Noto+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #FAFAFA; --white: #FFFFFF; --fg: #1A1A1A; --fg-sub: #555555;
-      --fg-light: #999999; --accent: #1B6B54; --accent-light: #E8F4EF;
-      --border: #E8E8E8;
-      --serif: 'Playfair Display', Georgia, serif;
-      --sans: 'Noto Sans', -apple-system, sans-serif;
-    }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
-    body { font-family:var(--sans); background:var(--bg); color:var(--fg); -webkit-font-smoothing:antialiased; }
-
-    /* Nav */
-    nav { position:fixed; top:0; width:100%; z-index:1000; background:rgba(250,250,250,0.92); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-bottom:1px solid var(--border); }
-    .nav-inner { max-width:1100px; margin:0 auto; padding:0 2rem; height:64px; display:flex; align-items:center; justify-content:space-between; }
-    .nav-logo { display:flex; align-items:center; gap:0.5rem; text-decoration:none; }
-    .nav-logo-mark { width:32px; height:32px; background:var(--accent); border-radius:8px; display:flex; align-items:center; justify-content:center; }
-    .nav-logo-mark svg { width:18px; height:18px; }
-    .nav-logo-text { font-family:var(--serif); font-size:1.2rem; font-weight:700; color:var(--fg); }
-    .nav-links { display:flex; align-items:center; gap:2rem; list-style:none; }
-    .nav-links a { font-size:0.85rem; font-weight:500; color:var(--fg-sub); text-decoration:none; transition:color 0.2s; }
-    .nav-links a:hover, .nav-links a.active { color:var(--accent); }
-
-    /* Header */
-    .page-hero {
-      max-width:800px; margin:0 auto;
-      padding:7rem 2rem 2rem;
-    }
-    .page-hero .label {
-      font-size:0.78rem; font-weight:600; letter-spacing:0.12em;
-      text-transform:uppercase; color:var(--accent); margin-bottom:0.8rem;
-    }
-    .page-hero h1 {
-      font-family:var(--serif); font-size:2rem; font-weight:700;
-      color:var(--fg); margin-bottom:0.6rem;
-    }
-    .page-hero .note {
-      font-size:0.85rem; font-weight:300; color:var(--fg-sub);
-    }
-    .page-hero .note strong { font-weight:700; }
-
-    /* Year group */
-    .pub-section {
-      max-width:800px; margin:0 auto;
-      padding:2rem 2rem 0;
-    }
-    .year-heading {
-      font-family:var(--serif); font-size:1.5rem; font-weight:700;
-      color:var(--accent); margin-bottom:1.2rem;
-      padding-bottom:0.5rem;
-      border-bottom:2px solid var(--accent-light);
-    }
-    .pub-list { list-style:none; }
-    .pub-item {
-      padding:1rem 0;
-      border-bottom:1px solid var(--border);
-      font-size:0.88rem; font-weight:300; color:var(--fg-sub);
-      line-height:1.75;
-    }
-    .pub-item:last-child { border-bottom:none; }
-    .pub-item strong { font-weight:700; color:var(--fg); }
-    .pub-item em { font-style:italic; }
-    .pub-item a.pub-link {
-      display:inline-block; margin-top:0.3rem;
-      font-size:0.78rem; font-weight:500; color:var(--accent);
-      text-decoration:none; border-bottom:1px solid transparent;
-      transition:border-color 0.2s;
-    }
-    .pub-item a.pub-link:hover { border-color:var(--accent); }
-
-    /* Footer */
-    footer { border-top:1px solid var(--border); background:var(--white); padding:2.5rem 2rem; margin-top:4rem; }
-    .footer-inner { max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
-    .footer-info p { font-size:0.8rem; color:var(--fg-light); font-weight:300; line-height:1.7; }
-    .footer-logos { display:flex; gap:0.6rem; }
-    .footer-badge { font-size:0.7rem; font-weight:600; color:var(--fg-sub); background:var(--bg); padding:0.35rem 0.75rem; border-radius:6px; }
-
-    @media(max-width:600px){
-      .page-hero h1 { font-size:1.5rem; }
-      .year-heading { font-size:1.2rem; }
-      .nav-links { gap:1.2rem; }
-    }
-  </style>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
@@ -101,165 +19,77 @@
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="people.html">People</a></li>
-        <li><a href="publications.html" class="active">Publications</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="news.html">News</a></li>
       </ul>
     </div>
   </nav>
 
   <div class="page-hero">
-    <div class="label">Publications</div>
-    <h1>Publications</h1>
-    <p class="note">GPT Lab members shown in <strong>bold</strong> text</p>
+    <div class="page-hero-left">
+      <div class="label">Publications</div>
+      <h1>Publications</h1>
+      <p class="note">GPT Lab members shown in <strong>bold</strong> text</p>
+    </div>
+    <button class="btn-add" onclick="openAddModal()">+ Add Publication</button>
   </div>
 
-  <!-- ━━ 2026 ━━ -->
-  <section class="pub-section">
-    <h2 class="year-heading">2026</h2>
-    <ul class="pub-list">
-      <li class="pub-item">Kim H, Seo Y, Kho H, Singh SS, Lee J, Lee H, Hwang J-W, Riew T-R, Koh S, Choi JY, Roh HW, Song SJ, Kim GT, Cho SK, Jin H-S, Jeong S-Y, Lee KI, <strong>Lee JY</strong>*, Kim BG*. Novel mouse model of cerebral microbleeds created by Crispr/Cas9-mediated Col4a1 deletion in adult brain microvessels. <em>Brain</em>. 2026. (*Co-corresponding) In Press.</li>
-    </ul>
-  </section>
+  <div id="publications-container">
+    <div class="loading">Loading publications...</div>
+  </div>
 
-  <!-- ━━ 2025 ━━ -->
-  <section class="pub-section">
-    <h2 class="year-heading">2025</h2>
-    <ul class="pub-list">
-      <li class="pub-item">Park HH, Kim Y, Jang BS, Geniscan S, Hwang DH, Seo Y, Jee S-A, Seo HG, Kim HS, Einisadr A, Kim HJ, Lee S, Kwon S, Kim KS, Lee KI, <strong>Lee JY</strong>, Park JM, Kim Y-M, Song S-C, Kim BG. Mechanical Environment Afforded by Engineered Hydrogel Critically Regulates Survival of Neural Stem Cells Transplanted in the Injured Spinal cord via Piezo1-Mediated Mechanotransduction. <em>Advanced Science</em>. 2025. <a href="https://advanced.onlinelibrary.wiley.com/doi/full/10.1002/advs.202507160" class="pub-link" target="_blank">Link →</a></li>
-      <li class="pub-item">Park HJ, Kim J, Choi J, Ryou C, Shin E, <strong>Lee JY</strong>. Targeted genome editing of ZKSCAN3 mitigates the neurotoxicity caused by mutant HTT (huntingtin) in a Huntington disease animal model and three-dimensional cell culture of Huntington disease. <em>Autophagy</em>. 2025. <a href="https://www.tandfonline.com/doi/10.1080/15548627.2025.2569965" class="pub-link" target="_blank">Link →</a></li>
-      <li class="pub-item">Evtimov VJ, Nguyen N, Hammett MV, Pupovac A, Hudson PJ, Zhuang J, <strong>Lee JY</strong>, Kim S, Trounson AO, Boyd RL, Shu R. CRISPR/Cas9 knockout of DGKA/Z improves the anti-tumor activities of TAG-72 CAR-T cells in ovarian cancer. <em>Molecular Therapy Oncology</em>. 2025. <a href="https://www.sciencedirect.com/science/article/pii/S2950329925000311" class="pub-link" target="_blank">Link →</a></li>
-    </ul>
-  </section>
+  <!-- Add/Edit Modal -->
+  <div class="modal-overlay" id="pubModal">
+    <div class="modal">
+      <h2 id="modalTitle">Add Publication</h2>
+      <form id="pubForm">
+        <input type="hidden" id="pubId">
+        <div class="form-group">
+          <label>Year *</label>
+          <input type="number" id="pubYear" required min="1990" max="2100" placeholder="2025">
+        </div>
+        <div class="form-group">
+          <label>Authors *</label>
+          <input type="text" id="pubAuthors" required placeholder="Kim H, Lee J, Park S, ...">
+          <p class="form-hint">Use &lt;strong&gt;Name&lt;/strong&gt; for lab members</p>
+        </div>
+        <div class="form-group">
+          <label>Title *</label>
+          <input type="text" id="pubTitle" required placeholder="Paper title here">
+        </div>
+        <div class="form-group">
+          <label>Journal *</label>
+          <input type="text" id="pubJournal" required placeholder="Nature, Science, etc.">
+        </div>
+        <div class="form-group">
+          <label>Details</label>
+          <input type="text" id="pubDetails" placeholder="2025. 12(3):123-456.">
+        </div>
+        <div class="form-group">
+          <label>Link URL</label>
+          <input type="url" id="pubLink" placeholder="https://...">
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn-cancel" onclick="closeModal()">Cancel</button>
+          <button type="submit" class="btn-save">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
-  <!-- ━━ 2024 ━━ -->
-  <section class="pub-section">
-    <h2 class="year-heading">2024</h2>
-    <ul class="pub-list">
-      <li class="pub-item">Lim SW, Lee KI, Cui S, Fang X, Shin YJ, Lee H, Yang CW, <strong>Lee JY</strong>, Chung BH. Generation of a human SLC12A3 knock-in human induced pluripotent stem cell line (CMCi014-A-82) using CRISPR-Cas9 system. <em>Stem Cell Research</em>. 2024. 81:103522. <a href="https://www.sciencedirect.com/science/article/pii/S1873506124002204" class="pub-link" target="_blank">Link →</a></li>
-      <li class="pub-item">Shin YJ, Chae SY, Lee H, Fang X, Cui S, Lim SW, Lee KI, <strong>Lee JY</strong>, Li C, Yang CW, Chung BH. CRISPR/Cas9-mediated suppression of A4GALT rescues endothelial cell dysfunction in a fabry disease vasculopathy model derived from human induced pluripotent stem cells. <em>Atherosclerosis</em>. 2024. 397:118549. <a href="https://www.atherosclerosis-journal.com/article/S0021-9150%2824%2901117-1/fulltext" class="pub-link" target="_blank">Link →</a></li>
-      <li class="pub-item">Lim SW, Lee KI, Cui S, Fang X, Shin YJ, Lee H, <strong>Lee JY</strong>, Chung BH, Yang CW. Generation of green fluorescent protein reporter knock-in iPSC line at the 3'UTR region of the KLOTHO locus. <em>Stem Cell Research</em>. 2024. 80:103499. <a href="https://www.sciencedirect.com/science/article/pii/S1873506124001971" class="pub-link" target="_blank">Link →</a></li>
-      <li class="pub-item">Go N, Ahn C, <strong>Lee JY</strong>. Enhancing transduction efficiency of adeno-associated virus 9 by cell line engineering: Implication for gene therapy potency assay. <em>Biotechnology and Bioprocess Engineering</em>. 2024. <a href="https://link.springer.com/article/10.1007/s12257-024-00003-x" class="pub-link" target="_blank">Link →</a></li>
-    </ul>
-  </section>
-
-  <!-- ━━ 2023 ━━ -->
-  <section class="pub-section">
-    <h2 class="year-heading">2023</h2>
-    <ul class="pub-list">
-      <li class="pub-item">Ye S#, Theotokis P#, <strong>Lee JY</strong>#, Kim MJ#, Nheu D, Ellen O, Bedford T, Ramanujam P, Wright DK, McDonald SJ, Alrehaili A, Bakhuraysah B, Kang JH, Siatskas C, Tremblay CS, Curtis DJ, Grigoriadis N, Monif M, Strittmatter SM, Petratos S. Nogo receptor-Fc delivered by hematopoietic cells enhances neurorepair in a multiple sclerosis model. <em>Brain Communications</em>. 2023. (#Co-first authors) <a href="https://academic.oup.com/braincomms/article/5/2/fcad108/7103334" class="pub-link" target="_blank">Link →</a></li>
-      <li class="pub-item">Lim SW, Na D, Lee H, Fang X, Cui S, Shin YJ, Lee KI, <strong>Lee JY</strong>, Yang CW, Chung BH. Modeling FAN1-deficint kidney disease using a human induced pluripotent stem cell-derived kidney organoid system. <em>Cells</em>. 2023. 12(18):2319. <a href="https://www.mdpi.com/2073-4409/12/18/2319" class="pub-link" target="_blank">Link →</a></li>
-      <li class="pub-item">Shu R, Hammett M, Evtimov V, Pupovac A, Nhuyen Nhu-Y, Islam R, Zhuang J, Lee S, Kang T, Lee K, Nisbet I, Hudson P, <strong>Lee JY</strong>, Boyd R, Trounson A. Engineering T cell receptor fusion proteins using nonviral CRISPR/Cas9 genome editing for cancer immunotherapy. <em>Bioengineering &amp; Translational Medicine</em>. 2023. <a href="https://aiche.onlinelibrary.wiley.com/doi/full/10.1002/btm2.10571" class="pub-link" target="_blank">Link →</a></li>
-      <li class="pub-item">Cui S, Fang X, Lee H, Shin YJ, Koh E, Chung S, Park HS, Lee KI, <strong>Lee JY</strong>, Yang CW, Chung BH. Modeling of Fabry disease nephropathy using patient derived human induced pluripotent stem cells and kidney organoid system. <em>Journal of Translational Medicine</em>. 2023. 21(1):138. <a href="https://link.springer.com/article/10.1186/s12967-023-03992-0" class="pub-link" target="_blank">Link →</a></li>
-      <li class="pub-item">Cui S, Shin YH, Lee H, Eum SH, Ko EJ, Lim SW, Lee KI, <strong>Lee JY</strong>, Yang CW, Chung BH. CRISPR/Cas9-mediated A4GALT suppression rescues Fabry disease phenotypes in a kidney organoid model. <em>Translational Research</em>. 2023. <a href="https://www.sciencedirect.com/science/article/pii/S1931524423000257" class="pub-link" target="_blank">Link →</a></li>
-      <li class="pub-item">Lim SW, Fang X, Cui S, Lee H, Shin YH, Ko EJ, Lee KI, <strong>Lee JY</strong>, Chung BH, Yang CW. CRISPR/Cas9-mediated correction of SLC12A3 gene mutation rescues the Gitelman's disease phenotype in a patient-derived kidney organoid system. <em>International Journal of Molecular Sciences</em>. 2023. 24(3):3019. <a href="https://www.mdpi.com/1422-0067/24/3/3019" class="pub-link" target="_blank">Link →</a></li>
-    </ul>
-  </section>
-
-  <!-- ━━ 2022 ━━ -->
-  <section class="pub-section">
-    <h2 class="year-heading">2022</h2>
-    <ul class="pub-list">
-      <li class="pub-item">Park HJ, Han A, Kim JY, Choi J, Bae HS, Cho GB, Shin H, Shin EJ, Lee KI, Kim S, <strong>Lee JY</strong>*, Song J*. SUPT4H1-edited stem cell therapy rescues neuronal dysfunction in a mouse model of Huntington's disease. <em>NPJ Regenerative Medicine</em>. 2022. 7(1):8. (*Co-corresponding) <a href="https://www.nature.com/articles/s41536-021-00198-0" class="pub-link" target="_blank">Link →</a></li>
-      <li class="pub-item">Oh JY, Kim H, Lee HJ, Lee K, Barreda H, Kim JH, Shin E, Bae EH, Kaur G, Zhang Y, Kim E, <strong>Lee JY</strong>, Lee RH. MHC Class I enables MSCs to evade NK-cell-mediated cytotoxicity and exert immunosuppressive activity. <em>Stem Cells</em>. 2022. <a href="https://academic.oup.com/stmcls/article/40/9/870/6646538" class="pub-link" target="_blank">Link →</a></li>
-      <li class="pub-item">Han JP, Kim M, Choi BS, Lee JH, Lee GS, Jeong M, Lee Y, Kim EA, Oh HK, Go N, Lee H, Lee KJ, Kim UG, <strong>Lee JY</strong>, Kim S, Chang J, Lee H, Dong DW, Yeom SC. In vivo delivery of CRISPR-Cas9 using lipid nanoparticles enables antithrombin gene editing for sustainable hemophilia A and B therapy. <em>Science Advances</em>. 2022. <a href="https://www.science.org/doi/10.1126/sciadv.abj6901" class="pub-link" target="_blank">Link →</a></li>
-    </ul>
-  </section>
-
-  <!-- ━━ 2021 ━━ -->
-  <section class="pub-section">
-    <h2 class="year-heading">2021</h2>
-    <ul class="pub-list">
-      <li class="pub-item">Stavropoulos F, Sargiannidou I, Potamiti L, Kagiava A, Panayiotidis MI, Bae JH, Yeom SC, <strong>Lee JY</strong>, Kleopa KA. Aberrant Mitochondrial Dynamics and Exacerbated Response to Neuroinflammation in a Novel Mouse Model of CMT2A. <em>International Journal of Molecular Sciences</em>. 2021. 22(21):11569. <a href="https://www.mdpi.com/1422-0067/22/21/11569" class="pub-link" target="_blank">Link →</a></li>
-      <li class="pub-item">Ko EJ, Cui S, Shin YJ, Lim SW, Lee KI, <strong>Lee JY</strong>, Yang CW, Kim M, Chung BH. Generation of the human induced pluripotent stem cell lines (CMCi009-A) from a patient with Birt-Hogg-Dube syndrome (BHD). <em>Stem Cell Research</em>. 2021. <a href="https://www.sciencedirect.com/science/article/pii/S1873506121000611" class="pub-link" target="_blank">Link →</a></li>
-      <li class="pub-item">Cui S, Shin YJ, Ko EJ, Lim SW, Ju JH, Lee KI, <strong>Lee JY</strong>, Yang CW, Chung BH. Human-induced pluripotent stem cell lines (CMCi006-A and CMCi007-A) from a female and male patient with Fabry disease. <em>Stem Cell Research</em>. 2021. <a href="https://www.sciencedirect.com/science/article/pii/S187350612100060X" class="pub-link" target="_blank">Link →</a></li>
-      <li class="pub-item">Bakhuraysah MM, Theotokis P, <strong>Lee JY</strong>, Alrehaili AA, Aui P, Figgett WA, Azari MF, Abou-Afech J, Mackay F, Siatskas C, Alderuccio F, Strittmatter SM, Grigoriadis N, Petratos S. B-cells expressing NgR1 and NgR3 are localized to EAE-induced inflammatory infiltrates. <em>Scientific Reports</em>. 2021. <a href="https://www.nature.com/articles/s41598-021-82346-6" class="pub-link" target="_blank">Link →</a></li>
-    </ul>
-  </section>
-
-  <!-- ━━ 2020 ━━ -->
-  <section class="pub-section">
-    <h2 class="year-heading">2020</h2>
-    <ul class="pub-list">
-      <li class="pub-item">Bae HS, Jin Y, Ham S, Kim HK, Shin H, Cho G, Lee KJ, Lee H, Kim K, Koo O, Jang G, Lee JM, <strong>Lee JY</strong>. CRISPR/Cas9-mediated knockout of Mct8 reveals a functional involvement of Mct8 in testis and sperm development in a rat. <em>Scientific Reports</em>. 2020. <a href="https://www.nature.com/articles/s41598-020-67594-2" class="pub-link" target="_blank">Link →</a></li>
-      <li class="pub-item"><strong>Lee JY</strong>, Jang YJ, Bae JH, Lee YH, Bae HS, Kim S, Park S, Koo OJ, Yeom SC. Efficient and specific generation of knockout mice using Campylobacter jejuni CRISPR/Cas9 system. <em>Biochemistry and Biophysics Reports</em>. 2020. 22:100752. <a href="https://www.sciencedirect.com/science/article/pii/S2405580820300613" class="pub-link" target="_blank">Link →</a></li>
-      <li class="pub-item">Lee J#, <strong>Lee JY</strong>#, Song DW#, Bae HS, Doo HM, Yu HS, Lee KJ, Kim HK, Hwang H, Kwak G, Kim D, Kim S, Hong YB, Lee JM*, Choi B*. Targeted PMP22 TATA-box editing by CRISPR/Cas9 reduces demyelinating neuropathy of Charcot-Marie-Tooth disease type 1A in mice. <em>Nucleic Acids Research</em>. 2020. (#Co-first author, *Co-corresponding author) <a href="https://academic.oup.com/nar/article/48/1/130/5622709" class="pub-link" target="_blank">Link →</a></li>
-      <li class="pub-item">Lim SW, Shin YJ, Cui S, Ko EJ, Lee KI, <strong>Lee JY</strong>, Chung BH, Yang CW. Generation of a human induced pluripotent stem cell line (CMCi002-A) from a patient with Gitelman's syndrome. <em>Stem Cell Research</em>. 2020. 49. <a href="https://www.sciencedirect.com/science/article/pii/S1873506120304116" class="pub-link" target="_blank">Link →</a></li>
-      <li class="pub-item">Petratos S, Theotokis P, Kim MJ, Azari MF, <strong>Lee JY</strong>. That's a Wrap! Molecular drivers governing neuronal nogo receptor-dependent myelin plasticity and integrity. <em>Frontiers in Cellular Neuroscience</em>. 2020. <a href="https://www.frontiersin.org/journals/cellular-neuroscience/articles/10.3389/fncel.2020.00227/full" class="pub-link" target="_blank">Link →</a></li>
-    </ul>
-  </section>
-
-  <!-- ━━ 2019 ━━ -->
-  <section class="pub-section">
-    <h2 class="year-heading">2019</h2>
-    <ul class="pub-list">
-      <li class="pub-item"><strong>Lee JY</strong>, Kim MJ, Thomas S, Oorschot V, Ramm G, Aui PM, Sekine Y, Deliyanti D, Wilkinson-Berka J, Niego B, Harvey AR, Theotokis P, McLean C, Strittmatter SM, Petratos S. Limiting Neuronal Nogo Receptor 1 Signaling during Experimental Autoimmune Encephalomyelitis Preserves Axonal Transport and Abrogates Inflammatory Demyelination. <em>Journal of Neuroscience</em>. 2019. 39(28):5562-5580. <a href="https://www.jneurosci.org/content/39/28/5562.long" class="pub-link" target="_blank">Link →</a></li>
-    </ul>
-  </section>
-
-  <!-- ━━ 2018 ━━ -->
-  <section class="pub-section">
-    <h2 class="year-heading">2018</h2>
-    <ul class="pub-list">
-      <li class="pub-item">Jang DE#, <strong>Lee JY</strong>#, Lee JH, Koo OJ, Bae HS, Jung MH, Bae JH, Hwang WS, Chang YJ, Lee YH, Lee HW, Yeom SC. Multiple sgRNAs with overlapping sequences enhance CRISPR/Cas9-mediated knock-in efficiency. <em>Experimental &amp; Molecular Medicine</em>. 2018. 50(4):1-9. (#Co-first author) <a href="https://www.nature.com/articles/s12276-018-0037-x" class="pub-link" target="_blank">Link →</a></li>
-      <li class="pub-item">Alrehaili AA, <strong>Lee JY</strong>, Bakhuraysah MM, Kim MJ, Aui PM, Magee KA, Petratos S. Nogo receptor expression in microglia/macrophages during experimental autoimmune encephalomyelitis progression. <em>Neural Regeneration Research</em>. 2018. 13(5):896-907. <a href="https://journals.lww.com/nrronline/fulltext/2018/13050/nogo_receptor_expression_in_microglia_macrophages.28.aspx" class="pub-link" target="_blank">Link →</a></li>
-      <li class="pub-item">Mokhtar SH, Magee KA, Aui PM, Thomas S, Bakhuraysah MM, Alrehaili AA, <strong>Lee JY</strong>, Kim MJ, Steer DL, Kenny R, McLean C, Azari MF, Birpanagos A, Petratos S. Amyloid-beta-dependent phosphorylation of CRMP-2 dissociates kinesin in Alzheimer's disease. <em>Neural Regeneration Research</em>. 2018. 13(6):1066-1080. <a href="https://journals.lww.com/nrronline/fulltext/2018/13060/amyloid_beta_dependent_phosphorylation_of.22.aspx" class="pub-link" target="_blank">Link →</a></li>
-    </ul>
-  </section>
-
-  <!-- ━━ 2017 ━━ -->
-  <section class="pub-section">
-    <h2 class="year-heading">2017</h2>
-    <ul class="pub-list">
-      <li class="pub-item"><strong>Lee JY</strong>, Kim MJ, Deliyanti D, Azari M, Rosselo JF, Stanley EG, Elefanty AG, Wilkinson-Berka LJ, Petratos S. Overcoming monocarboxylate transporter 8 (MCT8)-deficiency to promote human oligodendrocyte differentiation and myelination. <em>eBioMedicine</em>. 2017. 25:122-135. <a href="https://www.sciencedirect.com/science/article/pii/S2352396417304140" class="pub-link" target="_blank">Link →</a></li>
-      <li class="pub-item"><strong>Lee JY</strong>, Kim MJ, Li L, Velumian AA, Aui PM, Fehlings MG, Petratos S. Nogo receptor 1 regulates Caspr distribution at axo-glial units in the central nervous system. <em>Scientific Reports</em>. 2017. 7(1):8958. <a href="https://www.nature.com/articles/s41598-017-09405-9" class="pub-link" target="_blank">Link →</a></li>
-    </ul>
-  </section>
-
-  <!-- ━━ 2016 ━━ -->
-  <section class="pub-section">
-    <h2 class="year-heading">2016</h2>
-    <ul class="pub-list">
-      <li class="pub-item"><strong>Lee JY</strong> &amp; Petratos S. Thyroid hormone signaling in oligodendrocytes: From extracellular transport to intracellular signal. <em>Molecular Neurobiology</em>. 2016. 53(9):6568-6583. <a href="https://link.springer.com/article/10.1007/s12035-016-0013-1" class="pub-link" target="_blank">Link →</a></li>
-      <li class="pub-item">Dahl CM, Zeyad N, Chung J, Niego B, Galle A, Petratos S, <strong>Lee JY</strong>, Alderuccio F, Medcalf RL. The influence of differentially expressed tissue-type plasminogen activator in experimental autoimmune encephalomyelitis: Implications for multiple sclerosis. <em>PLoS ONE</em>. 2016. 11(7):e0158653. <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0158653" class="pub-link" target="_blank">Link →</a></li>
-      <li class="pub-item">Deliyanti D, <strong>Lee JY</strong>, Petratos S, Meyer C, Ward KW, Wilkinson-Berka J, de Haan JB. A potent Nrf2 activator, dh404, bolsters antioxidant capacity in glial cells and attenuates vasculopathy in mice with ischaemic retinopathy. <em>Clinical Science</em>. 2016. 130(15):1375-87. <a href="https://portlandpress.com/clinsci/article-abstract/130/15/1375/71415" class="pub-link" target="_blank">Link →</a></li>
-    </ul>
-  </section>
-
-  <!-- ━━ 2015 ━━ -->
-  <section class="pub-section">
-    <h2 class="year-heading">2015</h2>
-    <ul class="pub-list">
-      <li class="pub-item"><strong>Lee JY</strong>, Biemond M, Petratos S. Axonal degeneration in multiple sclerosis: Defining therapeutic targets by identifying the causes of pathology. <em>Neurodegenerative Disease Management</em>. 2015. 5(6):527-48. <a href="https://www.tandfonline.com/doi/full/10.2217/nmt.15.50" class="pub-link" target="_blank">Link →</a></li>
-      <li class="pub-item">Alshehri B, D'Souza DG, <strong>Lee JY</strong>, Petratos S &amp; Richardson SJ. The diversity of mechanism influenced by transthyretin in neurobiology: development, disease and endocrine disruption. <em>Journal of Neuroendocrinology</em>. 2015. <a href="https://onlinelibrary.wiley.com/doi/10.1111/jne.12271" class="pub-link" target="_blank">Link →</a></li>
-    </ul>
-  </section>
-
-  <!-- ━━ 2014 ━━ -->
-  <section class="pub-section">
-    <h2 class="year-heading">2014</h2>
-    <ul class="pub-list">
-      <li class="pub-item"><strong>Lee JY</strong>, Taghian K &amp; Petratos S. Axonal degeneration in multiple sclerosis: can we predict and prevent permanent disability? <em>Acta Neuropathologica Communications</em>. 2014. 2:97. <a href="https://link.springer.com/article/10.1186/s40478-014-0097-7" class="pub-link" target="_blank">Link →</a></li>
-      <li class="pub-item">Alrehaili A, <strong>Lee JY</strong>, Taghian K, Bakhuraysah M, Thomas S &amp; Petratos S. Microglial Mechanisms Governing Axonal Degeneration in Multiple Sclerosis: A pathological Perspective. <em>Journal of Neurology &amp; Neurophysiology</em>. 2014. 5:206.</li>
-    </ul>
-  </section>
-
-  <!-- ━━ 2013 ━━ -->
-  <section class="pub-section">
-    <h2 class="year-heading">2013</h2>
-    <ul class="pub-list">
-      <li class="pub-item"><strong>Lee JY</strong> &amp; Petratos S. Multiple Sclerosis: Does Nogo Play a Role? <em>Neuroscientist</em>. 2013. 19(4):394-408. <a href="https://journals.sagepub.com/doi/10.1177/1073858413477207" class="pub-link" target="_blank">Link →</a></li>
-      <li class="pub-item">Litwak SA, Payne NL, Campanale N, Ozturk E, <strong>Lee JY</strong>, Petratos S, Siatskas C, Bakhuraysah M &amp; Bernard CC. Nogo-Receptor 1 Deficiency Has No Influence on Immune Cell Repertoire or Function during Experimental Autoimmune Encephalomyelitis. <em>PLoS ONE</em>. 2013. 8(12):e82101. <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0082101" class="pub-link" target="_blank">Link →</a></li>
-      <li class="pub-item">Petratos S &amp; <strong>Lee JY</strong>. Stop CRMPing my style: a new competitive model of CRMP oligomerization. <em>Journal of Neurochemistry</em>. 2013. 125:800-2. <a href="https://onlinelibrary.wiley.com/doi/10.1111/jnc.12224" class="pub-link" target="_blank">Link →</a></li>
-    </ul>
-  </section>
-
-  <!-- ━━ 2012 ━━ -->
-  <section class="pub-section">
-    <h2 class="year-heading">2012</h2>
-    <ul class="pub-list">
-      <li class="pub-item">Petratos S, Ozturk E, Azari MF, Kenny R, <strong>Lee JY</strong>, Magee KA, Harvey AR, Mcdonald C, Taghian K, Moussa L, Aui PM, Siatskas C, Litwak S, Fehlings MG, Strittmatter SM &amp; Bernard CC. Limiting multiple sclerosis related axonopathy by blocking Nogo receptor and CRMP-2 phosphorylation. <em>Brain</em>. 2012. 135:1794-818. <a href="https://academic.oup.com/brain/article/135/6/1794/330971" class="pub-link" target="_blank">Link →</a></li>
-      <li class="pub-item">Taghian K, <strong>Lee JY</strong>, &amp; Petratos S. Phosphorylation and Cleavage of the Family of Collapsin Response Mediator Proteins May Play a Central Role in Neurodegeneration after CNS Trauma. <em>Journal of Neurotrauma</em>. 2012. 29:1728-35. <a href="https://www.liebertpub.com/doi/10.1089/neu.2011.2063" class="pub-link" target="_blank">Link →</a></li>
-    </ul>
-  </section>
+  <!-- Password Modal -->
+  <div class="modal-overlay password-modal" id="passwordModal">
+    <div class="modal">
+      <h2>Enter Password</h2>
+      <div class="form-group">
+        <input type="password" id="passwordInput" placeholder="Password">
+      </div>
+      <div class="modal-actions" style="justify-content:center;">
+        <button class="btn-cancel" onclick="closePasswordModal()">Cancel</button>
+        <button class="btn-save" onclick="verifyPassword()">Confirm</button>
+      </div>
+    </div>
+  </div>
 
   <footer>
     <div class="footer-inner">
@@ -267,12 +97,165 @@
         <p>Sungkyunkwan University, SAIHST &amp; Samsung Medical Center<br>81, Irwon-ro, Gangnam-gu, Seoul</p>
       </div>
       <div class="footer-logos">
-        <span class="footer-badge">SKKU</span>
-        <span class="footer-badge">SAIHST</span>
-        <span class="footer-badge">SMC</span>
+        <img src="images/skku-logo.jpeg" alt="SKKU" class="footer-logo">
+        <img src="images/saihst-logo.jpeg" alt="SAIHST" class="footer-logo">
+        <img src="images/smc-logo.png" alt="SMC" class="footer-logo">
       </div>
     </div>
   </footer>
 
+  <script src="js/app.js"></script>
+  <script>
+    var publications = [];
+    var pendingAction = null;
+    var editingId = null;
+
+    async function loadPublications() {
+      publications = await fetchSheetData('Publications');
+      renderPublications();
+    }
+
+    function renderPublications() {
+      var container = document.getElementById('publications-container');
+
+      if (!publications || publications.length === 0) {
+        container.innerHTML = '<div class="loading">No publications found.</div>';
+        return;
+      }
+
+      var byYear = {};
+      for (var i = 0; i < publications.length; i++) {
+        var p = publications[i];
+        if (!byYear[p.year]) byYear[p.year] = [];
+        byYear[p.year].push(p);
+      }
+
+      var years = Object.keys(byYear).sort(function(a, b) { return b - a; });
+
+      var html = '';
+      for (var j = 0; j < years.length; j++) {
+        var year = years[j];
+        html += '<section class="pub-section"><h2 class="year-heading">' + year + '</h2><ul class="pub-list">';
+        var pubs = byYear[year];
+        for (var k = 0; k < pubs.length; k++) {
+          var pub = pubs[k];
+          html += '<li class="pub-item">' +
+            pub.authors + '. ' + pub.title + '. <em>' + pub.journal + '</em>. ' + (pub.details || '') +
+            (pub.link ? ' <a href="' + pub.link + '" class="pub-link" target="_blank">Link</a>' : '') +
+            '<div class="pub-actions">' +
+              '<button class="btn-edit" onclick="editPub(' + pub.id + ')">Edit</button>' +
+              '<button class="btn-delete" onclick="deletePub(' + pub.id + ')">Delete</button>' +
+            '</div>' +
+          '</li>';
+        }
+        html += '</ul></section>';
+      }
+
+      container.innerHTML = html;
+    }
+
+    function openAddModal() {
+      editingId = null;
+      document.getElementById('modalTitle').textContent = 'Add Publication';
+      document.getElementById('pubForm').reset();
+      document.getElementById('pubYear').value = new Date().getFullYear();
+      document.getElementById('pubModal').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('pubModal').classList.remove('active');
+    }
+
+    function editPub(id) {
+      var pub = publications.find(function(p) { return p.id == id; });
+      if (!pub) return;
+
+      editingId = id;
+      document.getElementById('modalTitle').textContent = 'Edit Publication';
+      document.getElementById('pubYear').value = pub.year;
+      document.getElementById('pubAuthors').value = pub.authors;
+      document.getElementById('pubTitle').value = pub.title;
+      document.getElementById('pubJournal').value = pub.journal;
+      document.getElementById('pubDetails').value = pub.details || '';
+      document.getElementById('pubLink').value = pub.link || '';
+      document.getElementById('pubModal').classList.add('active');
+    }
+
+    function deletePub(id) {
+      if (!confirm('Are you sure you want to delete this publication?')) return;
+      pendingAction = { type: 'deletePublication', id: id };
+      document.getElementById('passwordModal').classList.add('active');
+      document.getElementById('passwordInput').value = '';
+      document.getElementById('passwordInput').focus();
+    }
+
+    document.getElementById('pubForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      var pubData = {
+        id: editingId,
+        year: parseInt(document.getElementById('pubYear').value),
+        authors: document.getElementById('pubAuthors').value,
+        title: document.getElementById('pubTitle').value,
+        journal: document.getElementById('pubJournal').value,
+        details: document.getElementById('pubDetails').value,
+        link: document.getElementById('pubLink').value
+      };
+
+      pendingAction = {
+        type: editingId ? 'updatePublication' : 'addPublication',
+        data: pubData
+      };
+      document.getElementById('passwordModal').classList.add('active');
+      document.getElementById('passwordInput').value = '';
+      document.getElementById('passwordInput').focus();
+    });
+
+    function closePasswordModal() {
+      document.getElementById('passwordModal').classList.remove('active');
+      pendingAction = null;
+    }
+
+    async function verifyPassword() {
+      var password = document.getElementById('passwordInput').value;
+
+      if (password !== '3820') {
+        alert('Incorrect password');
+        document.getElementById('passwordInput').value = '';
+        document.getElementById('passwordInput').focus();
+        return;
+      }
+
+      if (!pendingAction) return;
+
+      var btn = document.querySelector('#passwordModal .btn-save');
+      btn.disabled = true;
+      btn.textContent = 'Processing...';
+
+      var result = await callAppsScript(pendingAction.type, pendingAction.data || { id: pendingAction.id }, password);
+
+      btn.disabled = false;
+      btn.textContent = 'Confirm';
+
+      if (result.success) {
+        closePasswordModal();
+        closeModal();
+        pendingAction = null;
+        // 잠시 후 새로고침 (스프레드시트 반영 시간)
+        alert('Changes saved! Refreshing data...');
+        setTimeout(function() {
+          loadPublications();
+        }, 2000);
+      } else {
+        alert(result.message || 'An error occurred');
+      }
+    }
+
+    document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') verifyPassword();
+    });
+
+    loadPublications();
+  </script>
 </body>
 </html>

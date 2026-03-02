@@ -51,7 +51,7 @@ nav { position:fixed; top:0; width:100%; z-index:1000; background:rgba(250,250,2
 /* Research */
 .research { display:flex; flex-direction:column; justify-content:center; padding:0 2rem 2rem; }
 .research-inner { max-width:1100px; margin:0 auto; width:100%; }
-.section-label { font-size:0.78rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); margin-bottom:2.5rem; }
+.section-label { font-size:0.78rem; font-weight:600; letter-spacing:0.25em; text-transform:uppercase; color:var(--accent); margin-bottom:2.5rem; }
 .research-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.2rem; }
 .r-card { background:var(--white); border:1px solid var(--border); border-radius:14px; padding:2rem 1.8rem; transition:transform .25s, box-shadow .25s; position:relative; overflow:hidden; }
 .r-card:hover { transform:translateY(-4px); box-shadow:0 12px 36px rgba(0,0,0,0.06); }
