@@ -36,7 +36,7 @@
     .nav-links a:hover, .nav-links a.active { color:var(--accent); }
 
     /* ── Hero ── */
-    .hero { display:flex; align-items:center; justify-content:center; text-align:center; padding:7rem 2rem 2rem; }
+    .hero { display:flex; align-items:center; justify-content:center; text-align:center; padding:6rem 2rem 0; }
     .hero-inner { max-width:700px; }
     .hero-label { font-size:0.78rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); margin-bottom:1.5rem; opacity:0; animation:fadeUp .7s ease .2s forwards; }
     .hero h1 { font-family:var(--serif); font-size:clamp(2rem,4.5vw,3rem); font-weight:700; line-height:1.25; color:var(--fg); letter-spacing:-0.02em; opacity:0; animation:fadeUp .7s ease .4s forwards; }
@@ -48,16 +48,16 @@
     @keyframes bounce { 0%,100%{ transform:translateY(0) rotate(45deg); } 50%{ transform:translateY(6px) rotate(45deg); } }
 
     /* ── Description section ── */
-    .desc { display:flex; align-items:center; padding:2rem 2rem; }
+    .desc { display:flex; align-items:center; padding:0 2rem; }
     .desc-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
     .desc-text p { font-size:1.15rem; font-weight:300; color:var(--fg-sub); line-height:1.9; }
     .desc-visual { display:flex; align-items:center; justify-content:center; }
     .desc-visual svg { width:100%; max-width:420px; }
 
     /* ── Research ── */
-    .research { display:flex; flex-direction:column; justify-content:center; padding:2rem 2rem 4rem; }
+    .research { display:flex; flex-direction:column; justify-content:center; padding:0 2rem 2rem; }
     .research-inner { max-width:1100px; margin:0 auto; width:100%; }
-    .section-label { font-size:0.78rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); margin-bottom:2.5rem; }
+    .section-label { font-size:0.78rem; font-weight:600; letter-spacing:0.25em; text-transform:uppercase; color:var(--accent); margin-bottom:2.5rem; }
     .research-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.2rem; }
     .r-card { background:var(--white); border:1px solid var(--border); border-radius:14px; padding:2rem 1.8rem; transition:transform .25s, box-shadow .25s; position:relative; overflow:hidden; }
     .r-card:hover { transform:translateY(-4px); box-shadow:0 12px 36px rgba(0,0,0,0.06); }
@@ -125,7 +125,7 @@
   <!-- ━━ HERO ━━ -->
   <section class="hero">
     <div class="hero-inner">
-      <div class="hero-label">GPT Lab · Gene &amp; Cell Therapy Laboratory</div>
+      <div class="hero-label">GPT Lab - Genomic Pathogenesis &amp; Therapeutics Lab</div>
       <h1>From Genotype to Bedside:<br><em>Decoding Disease Mechanisms and Building Curative Gene &amp; Cell Therapies</em></h1>
       <div class="hero-scroll">
         <span>Scroll</span>
@@ -187,7 +187,14 @@
           <div class="r-card-top">
             <span class="r-card-num">01</span>
             <div class="r-card-icon icon-green">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#1B6B54" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="#1B6B54" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4c2 3 6 4 8 4s6-1 8-4"/>
+                <path d="M4 20c2-3 6-4 8-4s6 1 8 4"/>
+                <line x1="8" y1="7" x2="16" y2="7"/>
+                <line x1="6" y1="10" x2="18" y2="10"/>
+                <line x1="6" y1="14" x2="18" y2="14"/>
+                <line x1="8" y1="17" x2="16" y2="17"/>
+              </svg>
             </div>
           </div>
           <h3>Functional Genomics &amp; Modulation</h3>
@@ -198,7 +205,11 @@
           <div class="r-card-top">
             <span class="r-card-num">02</span>
             <div class="r-card-icon icon-purple">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#5B4A8A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="#5B4A8A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16V8z"/>
+                <path d="M3.29 7L12 12l8.71-5"/>
+                <path d="M12 22V12"/>
+              </svg>
             </div>
           </div>
           <h3>Delivery Optimization</h3>
@@ -209,7 +220,10 @@
           <div class="r-card-top">
             <span class="r-card-num">03</span>
             <div class="r-card-icon icon-orange">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#C7693D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="#C7693D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.5 20.5l-7-7a4.95 4.95 0 117-7l7 7a4.95 4.95 0 11-7 7z"/>
+                <line x1="8.5" y1="8.5" x2="15.5" y2="15.5"/>
+              </svg>
             </div>
           </div>
           <h3>Translational Medicine</h3>
@@ -220,7 +234,14 @@
           <div class="r-card-top">
             <span class="r-card-num">04</span>
             <div class="r-card-icon icon-blue">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#4A5BA8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="#4A5BA8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="7"/>
+                <circle cx="12" cy="12" r="3"/>
+                <circle cx="12" cy="3" r="2" fill="#4A5BA8" stroke="none"/>
+                <circle cx="12" cy="21" r="2" fill="#4A5BA8" stroke="none"/>
+                <circle cx="3" cy="12" r="2" fill="#4A5BA8" stroke="none"/>
+                <circle cx="21" cy="12" r="2" fill="#4A5BA8" stroke="none"/>
+              </svg>
             </div>
           </div>
           <h3>Engineered Cell Therapies</h3>
