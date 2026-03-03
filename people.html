@@ -31,7 +31,7 @@
 
   <!-- PI Section (하드코딩) -->
   <section class="pi-section reveal">
-    <div class="pi-photo">
+    <div class="pi-photo" onclick="openPIModal()" style="cursor:pointer;" title="View Profile">
       <img src="https://lh3.googleusercontent.com/d/1SMLYLIdLr4ig-cpxWOU5Pj9foj8-lug4" alt="Jae Young Lee">
     </div>
     <div class="pi-info">
@@ -40,6 +40,40 @@
       <p>As an industry experienced scientist, Jae Young has a vision to bridge fundamental genomics with translational medicine. He leads a multidisciplinary team developing next-generation therapies.</p>
     </div>
   </section>
+
+  <!-- PI Profile Modal -->
+  <div class="modal-overlay" id="piModal" onclick="closePIModal(event)">
+    <div class="modal pi-profile-modal">
+      <button class="pi-modal-close" onclick="closePIModalBtn()">✕</button>
+      <div class="pi-modal-header">
+        <img src="https://lh3.googleusercontent.com/d/1SMLYLIdLr4ig-cpxWOU5Pj9foj8-lug4" alt="Jae Young Lee" class="pi-modal-photo">
+        <div>
+          <div class="pi-role">Principal Investigator</div>
+          <h2 style="margin:0.3rem 0 0;">Jae Young Lee</h2>
+        </div>
+      </div>
+      <div class="pi-modal-body">
+        <div class="pi-modal-section">
+          <h3>Education</h3>
+          <ul>
+            <li><strong>PhD</strong> (Dean's Award for Thesis Excellence) | 2011–2016<br>Monash University, Department of Medicine, Melbourne, Australia</li>
+            <li><strong>B. Eng with Honours</strong> | 2007–2010<br>University of Melbourne, Melbourne, Australia</li>
+          </ul>
+        </div>
+        <div class="pi-modal-section">
+          <h3>Professional Experience</h3>
+          <ul>
+            <li><strong>Assistant Professor</strong> | September 2025–Present<br>Sungkyunkwan University, SAIHST<br>Samsung Medical Center, Cell and Gene Therapy Institute</li>
+            <li><strong>Assistant Professor</strong> | 2025–August 2025<br>Ajou University College of Medicine, Department of Anatomy</li>
+            <li><strong>Managing Director, Head of Strategy &amp; Business Development</strong> | 2016–2025<br>ToolGen Inc.</li>
+            <li><strong>Research Assistant</strong> | 2015–2016<br>Monash University, Melbourne, Australia</li>
+            <li><strong>Teaching Associate</strong> | 2013–2014<br>Monash University, Melbourne, Australia</li>
+            <li><strong>Research Scientist</strong> | 2011<br>Samsung Advanced Institute of Technology</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Lab Members (Google Sheets에서 로드) -->
   <section class="members reveal">
@@ -128,7 +162,6 @@
 
     async function loadMembers() {
       members = await fetchSheetData('Members');
-      // order 순으로 정렬
       members.sort(function(a, b) {
         return (a.order || 999) - (b.order || 999);
       });
@@ -159,7 +192,6 @@
 
       container.innerHTML = html;
 
-      // 호버 시 액션 버튼 표시
       var cards = container.querySelectorAll('.member-card');
       cards.forEach(function(card) {
         card.addEventListener('mouseenter', function() {
@@ -268,6 +300,77 @@
     });
 
     loadMembers();
+
+    // PI Profile Modal
+    function openPIModal() {
+      document.getElementById('piModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closePIModalBtn() {
+      document.getElementById('piModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    function closePIModal(e) {
+      if (e.target === document.getElementById('piModal')) closePIModalBtn();
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closePIModalBtn();
+    });
   </script>
+
+  <style>
+    .pi-photo { position: relative; overflow: hidden; }
+    .pi-photo::after {
+      content: 'View Profile';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      font-size: 0.8rem;
+      text-align: center;
+      padding: 0.5rem 0;
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .pi-photo:hover::after { opacity: 1; }
+
+    .pi-profile-modal {
+      max-width: 540px;
+      width: 92%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 2rem;
+      position: relative;
+    }
+    .pi-modal-close {
+      position: absolute; top: 1rem; right: 1rem;
+      background: none; border: none;
+      font-size: 1.1rem; cursor: pointer; color: #999;
+    }
+    .pi-modal-close:hover { color: #333; }
+    .pi-modal-header {
+      display: flex; align-items: center;
+      gap: 1.2rem; margin-bottom: 1.6rem;
+    }
+    .pi-modal-photo {
+      width: 76px; height: 76px;
+      border-radius: 50%; object-fit: cover; flex-shrink: 0;
+    }
+    .pi-modal-section { margin-bottom: 1.4rem; }
+    .pi-modal-section h3 {
+      font-size: 0.72rem; text-transform: uppercase;
+      letter-spacing: 0.1em; color: #999;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 0.4rem; margin-bottom: 0.9rem;
+    }
+    .pi-modal-section ul {
+      list-style: none; padding: 0; margin: 0;
+      display: flex; flex-direction: column; gap: 0.75rem;
+    }
+    .pi-modal-section ul li {
+      font-size: 0.88rem; line-height: 1.65; color: #444;
+    }
+  </style>
+
 </body>
 </html>
