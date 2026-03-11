@@ -100,22 +100,24 @@ async function callAppsScript(action, data, password) {
   }
 
   try {
-    const response = await fetch(APPS_SCRIPT_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        action: action,
-        data: data,
-        password: password
-      })
+    // GET 파라미터로 전달 (CORS 헤더 포함된 Apps Script doGet 사용)
+    const params = new URLSearchParams({
+      action: action,
+      data: JSON.stringify(data),
+      password: password
     });
 
-    // no-cors 모드에서는 응답을 읽을 수 없음
-    // 성공했다고 가정하고 페이지 새로고침
-    return { success: true };
+    const response = await fetch(APPS_SCRIPT_URL + '?' + params.toString(), {
+      method: 'GET',
+      redirect: 'follow'
+    });
+
+    if (!response.ok) {
+      return { success: false, message: 'Server error: ' + response.status };
+    }
+
+    const result = await response.json();
+    return result;
   } catch (error) {
     console.error('Error calling Apps Script:', error);
     return { success: false, message: error.toString() };
