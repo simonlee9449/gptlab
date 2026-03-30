@@ -162,6 +162,16 @@
 
     async function loadMembers() {
       members = await fetchSheetData('Members');
+      var yungiExists = members.some(function(m) { return m.name === 'Yun Gi Lee'; });
+      if (!yungiExists) {
+        members.push({
+          id: 'static-yungi',
+          name: 'Yun Gi Lee',
+          role: 'Researcher',
+          imageUrl: 'images/yungi-lee.png',
+          order: members.length + 1
+        });
+      }
       members.sort(function(a, b) {
         return (a.order || 999) - (b.order || 999);
       });
