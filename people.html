@@ -172,6 +172,16 @@
           order: members.length + 1
         });
       }
+      var minseoExists = members.some(function(m) { return m.name === 'Minseo Sohn'; });
+      if (!minseoExists) {
+        members.push({
+          id: 'static-minseo',
+          name: 'Minseo Sohn',
+          role: 'Masters Student (Co-supervision)',
+          imageUrl: 'images/minseo-sohn.jpg',
+          order: members.length + 1
+        });
+      }
       members.sort(function(a, b) {
         return (a.order || 999) - (b.order || 999);
       });
