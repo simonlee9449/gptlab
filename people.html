@@ -162,25 +162,37 @@
 
     async function loadMembers() {
       members = await fetchSheetData('Members');
-      var yungiExists = members.some(function(m) { return m.name === 'Yun Gi Lee'; });
-      if (!yungiExists) {
+      var yungiMember = members.find(function(m) { return m.name === 'Yun Gi Lee'; });
+      if (!yungiMember) {
         members.push({
           id: 'static-yungi',
           name: 'Yun Gi Lee',
           role: 'Researcher',
-          imageUrl: 'images/yungi-lee.jpg',
+          imageUrl: 'images/yungi-lee2.png',
           order: members.length + 1
         });
+      } else {
+        yungiMember.imageUrl = 'images/yungi-lee2.png';
       }
-      var minseoExists = members.some(function(m) { return m.name === 'Minseo Sohn'; });
-      if (!minseoExists) {
+      var minseoMember = members.find(function(m) { return m.name === 'Minseo Sohn'; });
+      if (!minseoMember) {
         members.push({
           id: 'static-minseo',
           name: 'Minseo Sohn',
           role: 'Masters Student (Co-supervision)',
-          imageUrl: 'images/minseo-sohn.jpg',
+          imageUrl: 'images/minseo-son2.png',
           order: members.length + 1
         });
+      } else {
+        minseoMember.imageUrl = 'images/minseo-son2.png';
+      }
+      var seokjuMember = members.find(function(m) { return m.name === 'Seokju Kim'; });
+      if (seokjuMember) {
+        seokjuMember.imageUrl = 'images/Seokju-kim2.png';
+      }
+      var nanyeongMember = members.find(function(m) { return m.name === 'Nanyeong Go'; });
+      if (nanyeongMember) {
+        nanyeongMember.imageUrl = 'images/nanyeong-go2.png';
       }
       members.sort(function(a, b) {
         return (a.order || 999) - (b.order || 999);
