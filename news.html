@@ -104,15 +104,7 @@
     var pendingAction = null;
     var editingId = null;
 
-    var staticNews = [
-      {
-        id: 'static-1',
-        title: 'The first GPT dinner',
-        description: 'Wonderful dinner with GPT crew.',
-        imageUrl: 'images/news/gpt-dinner-2026-04-09.jpg',
-        date: '2026-04-09'
-      }
-    ];
+    var staticNews = [];
 
     async function loadNews() {
       var sheetItems = await fetchSheetData('News');
