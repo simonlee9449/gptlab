@@ -116,6 +116,10 @@
 
     async function loadNews() {
       var sheetItems = await fetchSheetData('News');
+      // placeholder 항목 제거
+      sheetItems = sheetItems.filter(function(item) {
+        return !(item.title === 'title' && item.description === 'description');
+      });
       // 정적 항목과 시트 데이터 병합 후 날짜순 정렬 (최신순)
       newsItems = staticNews.concat(sheetItems);
       newsItems.sort(function(a, b) {
