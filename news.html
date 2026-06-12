@@ -104,9 +104,16 @@
     var pendingAction = null;
     var editingId = null;
 
+    var staticNews = [];
+
     async function loadNews() {
-      newsItems = await fetchSheetData('News');
-      // 날짜순 정렬 (최신순)
+      var sheetItems = await fetchSheetData('News');
+      // placeholder 항목 제거
+      sheetItems = sheetItems.filter(function(item) {
+        return !(item.title === 'title' && item.description === 'description');
+      });
+      // 정적 항목과 시트 데이터 병합 후 날짜순 정렬 (최신순)
+      newsItems = staticNews.concat(sheetItems);
       newsItems.sort(function(a, b) {
         return new Date(b.date) - new Date(a.date);
       });
@@ -139,10 +146,11 @@
               '<p>' + escapeHtml(item.description) + '</p>' +
               '<div class="date">' + (item.date || '') + '</div>' +
             '</div>' +
+            (String(item.id).indexOf('static-') === 0 ? '' :
             '<div class="news-actions">' +
               '<button class="btn-edit" onclick="editNews(' + item.id + ')">Edit</button>' +
               '<button class="btn-delete" onclick="deleteNews(' + item.id + ')">Delete</button>' +
-            '</div>' +
+            '</div>') +
           '</div>' +
         '</div>';
       }

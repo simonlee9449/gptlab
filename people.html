@@ -162,6 +162,46 @@
 
     async function loadMembers() {
       members = await fetchSheetData('Members');
+      var yungiMember = members.find(function(m) { return m.name === 'Yun Gi Lee'; });
+      if (!yungiMember) {
+        members.push({
+          id: 'static-yungi',
+          name: 'Yun Gi Lee',
+          role: 'Researcher',
+          imageUrl: 'images/yungi-lee2.png',
+          order: members.length + 1
+        });
+      } else {
+        yungiMember.imageUrl = 'images/yungi-lee2.png';
+      }
+      var minseoMember = members.find(function(m) { return m.name === 'Minseo Sohn'; });
+      if (!minseoMember) {
+        members.push({
+          id: 'static-minseo',
+          name: 'Minseo Sohn',
+          role: 'Masters Student (Co-supervision)',
+          imageUrl: 'images/minseo-son-2.png',
+          order: members.length + 1
+        });
+      } else {
+        minseoMember.imageUrl = 'images/minseo-son-2.png';
+      }
+      var seokjuMember = members.find(function(m) { return m.name === 'Seokju Kim'; });
+      if (seokjuMember) {
+        seokjuMember.imageUrl = 'images/seokju-kim2.png';
+      }
+      var nanyeongMember = members.find(function(m) { return m.name === 'Nanyeong Go'; });
+      if (nanyeongMember) {
+        nanyeongMember.imageUrl = 'images/nanyeong-go2.jpeg';
+      }
+      var heyrinMember = members.find(function(m) { return m.name === 'Hyerin Jung'; });
+      if (heyrinMember) {
+        heyrinMember.imageUrl = 'images/heyrin-2.png';
+      }
+      var hyunjungMember = members.find(function(m) { return m.name === 'Hyunjung Park'; });
+      if (hyunjungMember) {
+        hyunjungMember.imageUrl = 'images/hyunjung-2.png';
+      }
       members.sort(function(a, b) {
         return (a.order || 999) - (b.order || 999);
       });
