@@ -162,18 +162,6 @@
 
     async function loadMembers() {
       members = await fetchSheetData('Members');
-      var yungiMember = members.find(function(m) { return m.name === 'Yun Gi Lee'; });
-      if (!yungiMember) {
-        members.push({
-          id: 'static-yungi',
-          name: 'Yun Gi Lee',
-          role: 'Researcher',
-          imageUrl: 'images/yungi-lee2.png',
-          order: members.length + 1
-        });
-      } else {
-        yungiMember.imageUrl = 'images/yungi-lee2.png';
-      }
       var minseoMember = members.find(function(m) { return m.name === 'Minseo Sohn'; });
       if (!minseoMember) {
         members.push({
@@ -219,14 +207,16 @@
       var html = '';
       for (var i = 0; i < members.length; i++) {
         var m = members[i];
+        var isStatic = String(m.id).indexOf('static-') === 0;
         html += '<div class="member-card" style="position:relative;">' +
           '<div class="member-photo"><img src="' + convertDriveUrl(m.imageUrl) + '" alt="' + escapeHtml(m.name) + '"></div>' +
           '<h4>' + escapeHtml(m.name) + '</h4>' +
           '<span>' + escapeHtml(m.role) + '</span>' +
+          (isStatic ? '' :
           '<div class="member-actions" style="position:absolute; top:0.5rem; right:0.5rem; display:none; gap:0.3rem;">' +
-            '<button class="btn-edit" onclick="editMember(' + m.id + ')">Edit</button>' +
-            '<button class="btn-delete" onclick="deleteMember(' + m.id + ')">Delete</button>' +
-          '</div>' +
+            '<button class="btn-edit" onclick="editMember(&quot;' + m.id + '&quot;)">Edit</button>' +
+            '<button class="btn-delete" onclick="deleteMember(&quot;' + m.id + '&quot;)">Delete</button>' +
+          '</div>') +
         '</div>';
       }
 
@@ -235,10 +225,12 @@
       var cards = container.querySelectorAll('.member-card');
       cards.forEach(function(card) {
         card.addEventListener('mouseenter', function() {
-          this.querySelector('.member-actions').style.display = 'flex';
+          var actions = this.querySelector('.member-actions');
+          if (actions) actions.style.display = 'flex';
         });
         card.addEventListener('mouseleave', function() {
-          this.querySelector('.member-actions').style.display = 'none';
+          var actions = this.querySelector('.member-actions');
+          if (actions) actions.style.display = 'none';
         });
       });
     }
