@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "name": "Hyerin Jung",
+    "role": "Post-doctoral Fellow",
+    "imageUrl": "images/heyrin-2.png",
+    "order": 1
+  },
+  {
+    "id": 2,
+    "name": "Hyunjung Park",
+    "role": "Research Professor",
+    "imageUrl": "images/hyunjung-2.png",
+    "order": 2
+  },
+  {
+    "id": 3,
+    "name": "Seokju Kim",
+    "role": "Masters Student (Co-supervision)",
+    "imageUrl": "images/seokju-kim2.png",
+    "order": 3
+  },
+  {
+    "id": 4,
+    "name": "Nanyeong Go",
+    "role": "PhD Student",
+    "imageUrl": "images/nanyeong-go2.jpeg",
+    "order": 4
+  },
+  {
+    "id": 5,
+    "name": "Minseo Sohn",
+    "role": "Masters Student (Co-supervision)",
+    "imageUrl": "images/minseo-son-2.png",
+    "order": 5
+  }
+]
