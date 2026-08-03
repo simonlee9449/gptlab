@@ -33,5 +33,12 @@
     "role": "Masters Student (Co-supervision)",
     "imageUrl": "images/minseo-son-2.png",
     "order": 5
+  },
+  {
+    "id": 6,
+    "name": "Sieun Park",
+    "role": "Ms/PhD Student",
+    "imageUrl": "images/sieun.jpg",
+    "order": 6
   }
 ]
