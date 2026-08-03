@@ -75,7 +75,7 @@
     </div>
   </div>
 
-  <!-- Lab Members (Google Sheets에서 로드) -->
+  <!-- Lab Members (data/members.json에서 로드) -->
   <section class="members reveal">
     <div class="members-header" style="display:flex; justify-content:space-between; align-items:flex-start;">
       <div>
@@ -116,11 +116,14 @@
       var container = document.getElementById('members-container');
       try {
         var response = await fetch('data/members.json');
+        if (!response.ok) throw new Error('HTTP ' + response.status);
         members = await response.json();
       } catch (error) {
+        console.error('Failed to load members:', error);
         container.innerHTML = '<div class="loading">Unable to load members.</div>';
         return;
       }
+
       members.sort(function(a, b) {
         return (a.order || 999) - (b.order || 999);
       });
@@ -147,17 +150,6 @@
 
       container.innerHTML = html;
     }
-
-    loadMembers();
-        }, 2000);
-      } else {
-        alert(result.message || 'An error occurred');
-      }
-    }
-
-    document.getElementById('passwordInput').addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') verifyPassword();
-    });
 
     loadMembers();
 
