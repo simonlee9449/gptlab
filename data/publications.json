@@ -421,5 +421,14 @@
     "journal": "Journal of Neurotrauma",
     "details": "2012. 29:1728-35.",
     "link": "https://www.liebertpub.com/doi/10.1089/neu.2011.2063"
+  },
+  {
+    "id": 48,
+    "year": 2026,
+    "authors": "Lim SW, Fang X, Lee H, Yoon HE, Na DH, Eum SH, Suh JS, Shin YJ, Lee KI, <strong>Lee JY</strong>, Chung BH",
+    "title": "CRISPR/Cas9-mediated SLC12A3 gene knock-in restores molecular and functional defects in Gitelman syndrome hiPSC-derived kidney organoids",
+    "journal": "Stem Cell Research & Therapy",
+    "details": "2026.",
+    "link": "https://link.springer.com/article/10.1186/s13287-026-05326-5"
   }
 ]
